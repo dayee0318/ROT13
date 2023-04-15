@@ -25,6 +25,7 @@ class Application(tk.Frame):
         # 복사 버튼
         self.copy_button = tk.Button(self, text="Copy", font=("Helvetica", 14), command=self.copy_result)
         self.copy_button.grid(row=2, column=1, pady=10)
+        self.copy_button.grid_forget()  # 초기에는 복사 버튼을 그리드에서 제거
 
         # 결과창과 라벨
         self.result_label = tk.Label(self, text="", font=("Helvetica", 14))
@@ -50,6 +51,11 @@ class Application(tk.Frame):
                 result += char
 
         self.result_label.config(text=result, justify="left", anchor="nw", wraplength=300, width=25)
+
+        if result:
+            self.copy_button.grid(row=2, column=1, pady=10)
+        else:
+            self.copy_button.grid_forget()
 
     def copy_result(self):
         result = self.result_label.cget("text")
