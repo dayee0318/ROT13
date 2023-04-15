@@ -41,3 +41,11 @@ You can also specify an icon file and hide the console window by using the follo
 If you want to customize the appearance of the GUI, you can modify the `Application` class in the `ROT13.py` file. You can change the font, size, color, and layout of the widgets to suit your needs. 
 ![inshot1](img2.png)
 ![inshot2](img3.png)
+
+
+## Added Copy button! (Updated: April 15th)
+
+Now you can copy the decoded result!
+
+![inshot3](img4.png)
+![inshot4](img5.png)
