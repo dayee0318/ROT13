@@ -1,4 +1,7 @@
+from tkinter import messagebox
 import tkinter as tk
+import tkinter.ttk as ttk
+import tkinter.font as font
 
 class Application(tk.Frame):
     def __init__(self, master=None):
@@ -19,9 +22,13 @@ class Application(tk.Frame):
         self.decode_button = tk.Button(self, text="Decode", font=("Helvetica", 14), command=self.decode_message)
         self.decode_button.grid(row=2, column=0, pady=10)
 
+        # 복사 버튼
+        self.copy_button = tk.Button(self, text="Copy", font=("Helvetica", 14), command=self.copy_result)
+        self.copy_button.grid(row=2, column=1, pady=10)
+
         # 결과창과 라벨
         self.result_label = tk.Label(self, text="", font=("Helvetica", 14))
-        self.result_label.grid(row=0, column=1, rowspan=3, padx=10, pady=10, sticky="wens")
+        self.result_label.grid(row=0, column=1, rowspan=2, padx=10, pady=10, sticky="wens")
 
         # 창 크기 설정
         self.master.geometry("600x200")
@@ -43,6 +50,16 @@ class Application(tk.Frame):
                 result += char
 
         self.result_label.config(text=result, justify="left", anchor="nw", wraplength=300, width=25)
+
+    def copy_result(self):
+        result = self.result_label.cget("text")
+
+        if result:
+            self.master.clipboard_clear()
+            self.master.clipboard_append(result)
+            messagebox.showinfo("Copy", "The result has been copied to the clipboard.")
+        else:
+            messagebox.showerror("Error", "The result is empty.")
 
 if __name__ == "__main__":
     root = tk.Tk()
